@@ -6,16 +6,14 @@ import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 import tshirtwithstrategy.strategy.Strategy;
 
-public class TShirt {
+public final class TShirt {
 
-    private float basePrice = 10;
+    private final float basePrice = 10;
     private String name;
     private Color color;
     private Size size;
     private Fabric fabric;
     private float price;
-
-    Strategy strategy = new Strategy();
 
     public TShirt() {
     }
@@ -25,18 +23,19 @@ public class TShirt {
         this.color = color;
         this.size = size;
         this.fabric = fabric;
-        setPrice(price); // this.price = price; this is wrong!!!
+        setPrice(price);
     }
 
-    public List<TShirt> getTshirtList() {
+    public static List<TShirt> getTshirtList() {
         List<TShirt> tShirts = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
-            Color color = Color.values()[i];
+            Color tShirtcolor = Color.values()[i];
             for (int j = 0; j < 7; j++) {
-                Size size = Size.values()[j];
+                Size tShirtsize = Size.values()[j];
                 for (int k = 0; k < 7; k++) {
-                    Fabric fabric = Fabric.values()[k];
-                    tShirts.add(new TShirt(strategy.getRandomName(), color, size, fabric, ThreadLocalRandom.current().nextInt(0, 20 + 1)));
+                    Fabric tShirtfabric = Fabric.values()[k];
+                    tShirts.add(new TShirt(Strategy.getRandomName(), tShirtcolor, tShirtsize,
+                    tShirtfabric,ThreadLocalRandom.current().nextInt(0, 20 + 1)));
                 }
             }
         }

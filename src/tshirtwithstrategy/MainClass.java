@@ -8,11 +8,13 @@ public class MainClass {
 
     public static void main(String[] args) {
 
-        Strategy strategy = new Strategy();
-        TShirt tShirt = new TShirt();
-        List<TShirt> tShirtList = tShirt.getTshirtList();
-        
-        strategy.generateTShirtsAndStrategies(tShirtList).forEach(action
+        List<TShirt> tShirtList = TShirt.getTshirtList();
+        printTshirtList(tShirtList);
+
+    }
+
+    public static void printTshirtList(List<TShirt> tshirtList) {
+        Strategy.generateTShirtsAndStrategies(tshirtList).forEach(action
                 -> {
             System.out.println("------------------------");
             action.entrySet().forEach(entry
@@ -20,8 +22,6 @@ public class MainClass {
                 System.out.println(entry.getKey() + " Price: " + entry.getValue());
             });
         });
-    
+
     }
 }
-
-
