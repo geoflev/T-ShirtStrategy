@@ -1,8 +1,13 @@
 package tshirtwithstrategy.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
+import tshirtwithstrategy.strategy.Strategy;
 
 public class TShirt {
+
     private float basePrice = 10;
     private String name;
     private Color color;
@@ -10,9 +15,11 @@ public class TShirt {
     private Fabric fabric;
     private float price;
 
+    Strategy strategy = new Strategy();
+
     public TShirt() {
     }
-       
+
     public TShirt(String name, Color color, Size size, Fabric fabric, float price) {
         this.name = name;
         this.color = color;
@@ -21,13 +28,25 @@ public class TShirt {
         setPrice(price); // this.price = price; this is wrong!!!
     }
 
+    public List<TShirt> getTshirtList() {
+        List<TShirt> tShirts = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            Color color = Color.values()[i];
+            for (int j = 0; j < 7; j++) {
+                Size size = Size.values()[j];
+                for (int k = 0; k < 7; k++) {
+                    Fabric fabric = Fabric.values()[k];
+                    tShirts.add(new TShirt(strategy.getRandomName(), color, size, fabric, ThreadLocalRandom.current().nextInt(0, 20 + 1)));
+                }
+            }
+        }
+        return tShirts;
+    }
+
     public float getPrice() {
         return price;
     }
 
-    // base price = 10
-    // setPrice(22.75)
-    // price 10+22.75 = 32.75 
     public void setPrice(float price) {
         this.price = this.basePrice + price;
     }
