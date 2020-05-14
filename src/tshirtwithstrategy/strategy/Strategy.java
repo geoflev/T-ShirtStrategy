@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 import tshirtwithstrategy.Context;
 import tshirtwithstrategy.models.TShirt;
 
@@ -42,17 +41,5 @@ public class Strategy {
 
     }
 
-    public static String getRandomName() {
-        int leftLimit = 97;
-        int rightLimit = 122;
-        int targetStringLength = 10;
-        Random random = new Random();
-
-        String generatedString = random.ints(leftLimit, rightLimit + 1)
-                .limit(targetStringLength)
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
-
-        return (generatedString);
-    }
+   
 }

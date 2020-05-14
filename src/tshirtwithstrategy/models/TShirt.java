@@ -3,8 +3,8 @@ package tshirtwithstrategy.models;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import tshirtwithstrategy.strategy.Strategy;
 
 public final class TShirt {
 
@@ -34,12 +34,26 @@ public final class TShirt {
                 Size tShirtsize = Size.values()[j];
                 for (int k = 0; k < 7; k++) {
                     Fabric tShirtfabric = Fabric.values()[k];
-                    tShirts.add(new TShirt(Strategy.getRandomName(), tShirtcolor, tShirtsize,
+                    tShirts.add(new TShirt(getRandomName(), tShirtcolor, tShirtsize,
                     tShirtfabric,ThreadLocalRandom.current().nextInt(0, 20 + 1)));
                 }
             }
         }
         return tShirts;
+    }
+    
+     public static String getRandomName() {
+        int leftLimit = 97;
+        int rightLimit = 122;
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        return (generatedString);
     }
 
     public float getPrice() {
