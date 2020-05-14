@@ -30,7 +30,7 @@ public class MainClass {
                 }
             }
         }
-
+//asfjhasdfb
         generateTShirtsAndStrategies(tShirts).forEach(action
                 -> {
             System.out.println("------------------------");
